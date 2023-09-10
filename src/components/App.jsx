@@ -1,26 +1,23 @@
-import ContactForm from './ContactForm/ContactForm';
-import styled from '@emotion/styled';
-import ContactList from './ContactList/ContactList';
-import Filter from './Filter/Filter';
-const Container = styled.div`
-  max-width: 1168px;
-  padding: 32px 16px;
-  margin: 0 auto;
-`;
+import { Route, Routes } from 'react-router-dom';
+import { Suspense, lazy } from 'react';
+import { Layout } from './Layuot';
 
-const ContactsContaier = styled.div`
-  margin-top: 32px;
-`;
+const HomePage = lazy(() => import('../pages/Home'));
+const RegisterPage = lazy(() => import('../pages/Register'));
+const LoginPage = lazy(() => import('../pages/Login'));
+const ContactsPage = lazy(() => import('../pages/Contacts'));
 
 export const App = () => {
   return (
-    <Container>
-      <ContactForm />
-      <h2>Contacts</h2>
-      <Filter />
-      <ContactsContaier>
-        <ContactList />
-      </ContactsContaier>
-    </Container>
+    <Suspense fallback={<h2>Loading...</h2>}>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path="register" element={<RegisterPage />} />
+          <Route path="login" element={<LoginPage />} />
+          <Route path="contacts" element={<ContactsPage />} />
+        </Route>
+      </Routes>
+    </Suspense>
   );
 };

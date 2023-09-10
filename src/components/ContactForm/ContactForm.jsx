@@ -1,15 +1,10 @@
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
-import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/operation';
 import { FormContact, Input, Button } from './ContacForm.styled';
-import { getContacts } from 'redux/selectors';
 
 export default function ContactForm() {
   const nameId = nanoid();
   const numberId = nanoid();
-  const { items } = useSelector(getContacts);
-  const dispatch = useDispatch();
   const [contact, setContact] = useState({ name: '', number: '' });
 
   const handleChange = event => {
@@ -20,22 +15,8 @@ export default function ContactForm() {
     }));
   };
 
-  const handleSubmit = event => {
-    event.preventDefault();
-
-    const { name, number } = contact;
-
-    if (items.some(contact => contact.name === name)) {
-      alert('Oh! This contact has already been saved');
-      setContact({ name: '', number: '' });
-      return;
-    }
-    dispatch(addContact({ name, number }));
-    setContact({ name: '', number: '' });
-  };
-
   return (
-    <FormContact autoComplete="off" onSubmit={handleSubmit}>
+    <FormContact autoComplete="off">
       <label htmlFor={nameId}>Name</label>
       <Input
         id={nameId}
