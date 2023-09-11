@@ -36,7 +36,7 @@ export const RegisterForm = () => {
           type="text"
           name="name"
           value={name}
-          onChange={e => setEmail(e.target.value)}
+          onChange={e => setName(e.target.value)}
         />
       </Label>
       <Label>
@@ -45,7 +45,7 @@ export const RegisterForm = () => {
           type="email"
           name="email"
           value={email}
-          onChange={e => setName(e.target.value)}
+          onChange={e => setEmail(e.target.value)}
         />
       </Label>
       <Label>
