@@ -8,10 +8,9 @@ import { addContacts } from 'redux/contacts/operation';
 export default function ContactForm() {
   const nameId = nanoid();
   const numberId = nanoid();
-  const items = useSelector(selectAllContacts)
+  const items = useSelector(selectAllContacts);
   const dispatch = useDispatch();
   const [contact, setContact] = useState({ name: '', number: '' });
-
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -31,7 +30,6 @@ export default function ContactForm() {
       setContact({ name: '', number: '' });
       return;
     }
-
     dispatch(addContacts({ name, number }));
     setContact({ name: '', number: '' });
   };

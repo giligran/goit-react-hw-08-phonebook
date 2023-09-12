@@ -1,2 +1,2 @@
-export const selectLoading = state => state.tasks.loading;
+export const selectLoading = state => state.contacts.isLoading;
 export const selectAllContacts = state => state.contacts.items;
