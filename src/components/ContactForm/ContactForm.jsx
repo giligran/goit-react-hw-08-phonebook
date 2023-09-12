@@ -31,7 +31,6 @@ export default function ContactForm() {
       setContact({ name: '', number: '' });
       return;
     }
-console.log({name, number})
 
     dispatch(addContacts({ name, number }));
     setContact({ name: '', number: '' });
